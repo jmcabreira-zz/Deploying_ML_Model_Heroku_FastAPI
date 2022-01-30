@@ -21,9 +21,6 @@ with open(CONFIG_FILEPATH, "r", encoding="utf-8") as ymlfile:
 RAW_DATA_FILE_PTH = os.path.join(STARTER_ROOT,config.data.raw.filepath)
 CLEANED_DATA_FILE_PTH = os.path.join(STARTER_ROOT, config.data.cleaned.filepath)
 
-print(RAW_DATA_FILE_PTH)
-print(CLEANED_DATA_FILE_PTH)
-
 def run_clean_data():
   cleaned_df = clean_raw_data(filepath = RAW_DATA_FILE_PTH)
   cleaned_df.to_csv(CLEANED_DATA_FILE_PTH)

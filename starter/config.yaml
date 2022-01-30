@@ -1,0 +1,5 @@
+data:
+  raw:
+    filepath: 'data/census.csv'
+  cleaned:
+    filepath: 'data/census_cleaned_test_data.csv'

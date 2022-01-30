@@ -1,5 +1,24 @@
 import numpy as np
-from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+#from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+import pandas as pd
+
+def clean_raw_data(filepath: str) -> pd.DataFrame:
+    """ Clean raw census data.
+    Basic cleaning of the census data 
+        - remove rows missing values rows
+        - remove spaces before text.
+    Inputs
+    ------
+    filepath : str
+        Filepath of the raw census dataset
+    Returns
+    -------
+    df : pd.DataFrame
+        Cleaned data.
+    """
+    df = pd.read_csv(filepath, na_values="?", skipinitialspace=True)
+    df.dropna(inplace=True)
+    return df
 
 
 def process_data(

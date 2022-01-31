@@ -1,5 +1,5 @@
 import numpy as np
-#from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 import pandas as pd
 
 def clean_raw_data(filepath: str) -> pd.DataFrame:

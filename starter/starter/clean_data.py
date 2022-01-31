@@ -1,4 +1,8 @@
-
+"""
+This script Cleans the raw data
+Author: Jonathan Cabreira
+Date: January 2022
+"""
 import sys
 from pathlib import Path
 import yaml

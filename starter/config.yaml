@@ -3,3 +3,25 @@ data:
     filepath: 'data/census.csv'
   cleaned:
     filepath: 'data/census_cleaned_test_data.csv'
+preprocessing:
+  cat_features:
+    - workclass
+    - education
+    - marital-status
+    - occupation
+    - relationship
+    - race
+    - sex
+    - native-country
+  test_size: 0.20
+  random_seed: 44
+  label: salary
+  encoder_file_path: model/encoder.pkl
+  binarizer_file_path: model/label_binarizer.pkl
+  train_filepath: data/train.npy
+  test_filepath: data/test.npy
+model:
+  random_seed: 44
+  GradientBoostingClassifier:
+    output_file_pth: model/GradientBoostingClassifier.pkl
+    n_estimators: 100

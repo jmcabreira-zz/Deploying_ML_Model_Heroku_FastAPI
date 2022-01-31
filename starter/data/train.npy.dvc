@@ -1,0 +1,4 @@
+outs:
+- md5: 206291322488e3db99b3bafaddd58739
+  size: 20268616
+  path: train.npy

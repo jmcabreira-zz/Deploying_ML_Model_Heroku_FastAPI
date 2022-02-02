@@ -1,0 +1,4 @@
+outs:
+- md5: e25987efa079f05cc9bf113d8873cce2
+  size: 6249
+  path: slice_output.csv

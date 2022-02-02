@@ -3,3 +3,6 @@
 /census_cleaned_test_data.csv
 /test.npy
 /train.npy
+/slice_output.csv
+/test_data_metrics.txt
+/train_data_metrics.csv

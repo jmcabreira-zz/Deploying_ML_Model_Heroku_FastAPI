@@ -39,9 +39,7 @@ logging.basicConfig(
             level=logging.INFO
                 )   
 
-
-if __name__ == '__main__':
-
+def run_train_model():
     logging.info('Train model log')
     # Add code to load in the data.
     data = pd.read_csv(CLEANED_DATA_FILEPATH).drop(["Unnamed: 0"], axis = 1)
@@ -84,3 +82,8 @@ if __name__ == '__main__':
     with open(os.path.join(STARTER_ROOT,config.preprocessing.test_filepath), "wb") as f:
         np.save(f, X_test)
         np.save(f, y_test)
+
+if __name__ == '__main__':
+    run_train_model()
+
+    

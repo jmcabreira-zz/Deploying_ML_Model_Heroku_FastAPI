@@ -1,3 +1,9 @@
+"""
+This script Process the data 
+Author: Jonathan Cabreira
+Date: January 2022
+"""
+
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 import pandas as pd

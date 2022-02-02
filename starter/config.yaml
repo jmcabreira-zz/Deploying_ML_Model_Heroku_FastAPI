@@ -25,3 +25,7 @@ model:
   GradientBoostingClassifier:
     output_file_pth: model/GradientBoostingClassifier.pkl
     n_estimators: 100
+  metrics:
+    slice_filepath: data/slice_output.csv
+    all_train_filepath: data/train_data_metrics.csv
+    all_test_filepath: data/test_data_metrics.txt

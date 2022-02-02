@@ -1,6 +1,12 @@
+"""
+Module to evaluate a trained model, inference and computing metrics.
+author: Jonathan Cabreira
+Date: January 2022
+"""
+
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import GradientBoostingClassifier
-
+import numpy as np
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train, config):
     """
@@ -58,4 +64,5 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    pass
+    y_preds = model.predict(X)
+    return y_preds

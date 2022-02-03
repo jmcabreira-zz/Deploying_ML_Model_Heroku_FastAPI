@@ -27,5 +27,5 @@ model:
     n_estimators: 100
   metrics:
     slice_filepath: data/slice_output.csv
-    all_train_filepath: data/train_data_metrics.csv
-    all_test_filepath: data/test_data_metrics.txt
+    all_train_filepath: data/train_data_metrics_2.csv
+    all_test_filepath: data/test_data_metrics_2.csv

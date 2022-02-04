@@ -81,11 +81,11 @@ def test_columns_name(data):
 def test_missing_values(data):
 
     try:
-        assert data.isnull().sum().sum() == 0
+        assert data.isnull().sum() == 0
         logging.info("Testing cleaned data: No rows with null values.")
     except AssertionError as e:
         logging.error(
-            f"Testing cleaned data: Expected no null values but found {df_clean.isnull().sum().sum()} missing values"
+            f"Testing cleaned data: Expected no null values but found {data.isnull().sum()} missing values"
         )
         raise e
 

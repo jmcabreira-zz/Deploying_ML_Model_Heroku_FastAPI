@@ -30,6 +30,7 @@ def data():
     )
     return df
 
+
 def test_dataframe_shape(data):
     """
     test dataframe shape
@@ -76,8 +77,10 @@ def test_columns_name(data):
         )
         raise e
 
+
 def test_missing_values(data):
-     try:
+
+    try:
         assert data.isnull().sum().sum() == 0
         logging.info("Testing cleaned data: No rows with null values.")
     except AssertionError as e:
@@ -86,15 +89,14 @@ def test_missing_values(data):
         )
         raise e
 
+
 def test_question_mark(data):
     """
     Check whether the data has a question mark in it
     """
-     try:
+    try:
         assert "?" not in data.values
         logging.info("Testing the cleaned data: No question mark in cleaned data")
     except AssertionError as e:
-        logging.error(
-            f"Testing cleaned data: There is still ? in the clenaed data"
-        )
+        logging.error(f"Testing cleaned data: There is still ? in the clenaed data")
         raise e

@@ -1,0 +1,4 @@
+{
+  "python.pythonPath": "/home/jonathan/anaconda3/envs/ml_heroku_fastapi/bin/python",
+  "python.formatting.provider": "black"
+}

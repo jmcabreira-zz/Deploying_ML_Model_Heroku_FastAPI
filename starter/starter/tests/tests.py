@@ -4,20 +4,20 @@ import pytest
 from pathlib import Path
 import yaml
 from box import Box
+import pandas as pd
 
 STARTER_ROOT = str(Path(__file__).resolve().parents[2])
-LOG_FOLDER = os.path.join(STARTER_ROOT, 'logs')
+LOG_FOLDER = os.path.join(STARTER_ROOT, "logs")
 CONFIG_FILEPATH = os.path.join(STARTER_ROOT, "config.yaml")
-LOG_FILE_PTH = os.path.join(LOG_FOLDER, 'train_model.log')
+LOG_FILE_PTH = os.path.join(LOG_FOLDER, "unit_test.log")
 
 if not os.path.exists(LOG_FOLDER):
     os.makedirs(LOG_FOLDER)
 print(CONFIG_FILEPATH)
-with open(CONFIG_FILEPATH, 'r', encoding='UTF-8') as configfile:
+with open(CONFIG_FILEPATH, "r", encoding="UTF-8") as configfile:
     config = Box(yaml.safe_load(configfile))
 
-CLEANED_DATA_FILEPATH = os.path.join(
-    STARTER_ROOT, config.data.cleaned.filepath)
+CLEANED_DATA_FILEPATH = os.path.join(STARTER_ROOT, config.data.cleaned.filepath)
 
 
 @pytest.fixture
@@ -25,36 +25,26 @@ def data():
     """
     Load the cleaned dataset
     """
-    df = starter.helper_function.import_data("data/census_cleaned.csv")
+    df = pd.read_csv(os.path.join(STARTER_ROOT, "data/census_cleaned.csv")).drop(
+        ["Unnamed: 0"], axis=1
+    )
     return df
 
-
-def test_import_data(data):
-    '''
-    test import_data 
-    '''
-    assert data.shape[0] > 0
-    assert data.shape[1] > 0
-
-
-def test_process_data(data):
+def test_dataframe_shape(data):
     """
-    test process_data function
+    test dataframe shape
     """
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
-    X_test, y_test, _, _ = starter.helper_function.process_data(
-        data, categorical_features=cat_features, label="salary", training=True)
-
-    assert len(X_test) == len(y_test)
+    try:
+        assert len(data.shape[0]) > 0
+        assert len(data.shape[1]) == 15
+        logging.info(
+            f"Testing the cleaned data: The cleaned dataset has {data.shape[0]} rows and {data.shape[1]} columns as expected."
+        )
+    except AssertionError as e:
+        logging.error(
+            f"Testing the cleaned data: The cleaned dataset has {data.shape[0]} rows and {data.shape[1]}."
+        )
+        raise e
 
 
 def test_columns_name(data):
@@ -73,8 +63,38 @@ def test_columns_name(data):
         "sex",
         "hours-per-week",
         "native-country",
-        "salary"
+        "salary",
     ]
 
-    obtained_columns = data.columns.values
-    assert list(right_columns) == list(obtained_columns)
+    data_columns = data.columns.values
+    try:
+        assert list(right_columns) == list(data_columns)
+        logging.info("Testing Cleaned data: Column names are as expected")
+    except AssertionError as e:
+        logging.error(
+            f"Testing cleaned data: Column names are not as expected. Dataset columnsa: {data_columns}"
+        )
+        raise e
+
+def test_missing_values(data):
+     try:
+        assert data.isnull().sum().sum() == 0
+        logging.info("Testing cleaned data: No rows with null values.")
+    except AssertionError as e:
+        logging.error(
+            f"Testing cleaned data: Expected no null values but found {df_clean.isnull().sum().sum()} missing values"
+        )
+        raise e
+
+def test_question_mark(data):
+    """
+    Check whether the data has a question mark in it
+    """
+     try:
+        assert "?" not in data.values
+        logging.info("Testing the cleaned data: No question mark in cleaned data")
+    except AssertionError as e:
+        logging.error(
+            f"Testing cleaned data: There is still ? in the clenaed data"
+        )
+        raise e

@@ -8,9 +8,10 @@ import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 import pandas as pd
 
+
 def clean_raw_data(filepath: str) -> pd.DataFrame:
-    """ Clean raw census data.
-    Basic cleaning of the census data 
+    """Clean raw census data.
+    Basic cleaning of the census data
         - remove rows missing values rows
         - remove spaces before text.
     Inputs
@@ -30,7 +31,7 @@ def clean_raw_data(filepath: str) -> pd.DataFrame:
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None
 ):
-    """ Process the data used in the machine learning pipeline.
+    """Process the data used in the machine learning pipeline.
 
     Processes the data using one hot encoding for the categorical features and a
     label binarizer for the labels. This can be used in either training or
@@ -76,7 +77,9 @@ def process_data(
         y = np.array([])
 
     X_categorical = X[categorical_features].values
+    # print("X_categorical: ", X_categorical)
     X_continuous = X.drop(*[categorical_features], axis=1)
+    # print("X_continuous: ", X_continuous)
 
     if training is True:
         encoder = OneHotEncoder(sparse=False, handle_unknown="ignore")

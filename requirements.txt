@@ -10,7 +10,7 @@ scikit_learn==0.24.2
 python-multipart==0.0.5
 PyYAML==5.4.1
 gunicorn
-scikit-learn
+scikit-learn==1.0.2
 fastapi==0.63.0
 uvicorn
 python-box

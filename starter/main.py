@@ -13,7 +13,6 @@ from starter.ml.model import inference
 from starter.ml.data import process_data
 from starter.CensusClass.Census_Class import CensusData, Prediction
 
-app = FastAPI()
 
 root = str(Path(__file__).resolve().parents[1])
 
@@ -29,9 +28,9 @@ BINARIZER_FILEPATH = os.path.join(
 MODEL_FILEPATH = os.path.join(
     root, "starter", config.model.GradientBoostingClassifier.output_file_pth
 )
-print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
-print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
-print("MODEL_FILEPATH:", MODEL_FILEPATH)
+# print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
+# print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
+# print("MODEL_FILEPATH:", MODEL_FILEPATH)
 
 app = FastAPI()
 
@@ -68,3 +67,47 @@ async def make_predictions(request_data: CensusData):
 
     print("Predicted Income:", prediction)
     return {"prediction": prediction}
+
+
+# def make_predictions(request_data: CensusData):
+#     request_df = pd.DataFrame({k: v for k, v in request_data.items()}, index=[0])
+
+#     X, _, _, _ = process_data(
+#         X=request_df,
+#         categorical_features=categorical_features,
+#         label=None,
+#         training=False,
+#         encoder=encoder,
+#         lb=binarizer,
+#     )
+#     prediction = inference(model=model, X=X)
+
+#     # prediction = binarizer.inverse_transform(prediction).tolist()[0]
+#     # prediction = [ ">50K" if pred==1 else  pre==0 "<50K"]
+#     print(prediction)
+#     if prediction == 1:
+#         prediction = ">50K"
+#     elif prediction == 0:
+#         prediction = "<=50K"
+#     print("Predicted Income:", prediction)
+#     return {"prediction": prediction}
+
+
+# if __name__ == "__main__":
+#     request_data = {
+#         "age": 41,
+#         "workclass": "Private",
+#         "fnlgt": 45781,
+#         "education": "Masters",
+#         "education-num": 14,
+#         "marital-status": "Married-civ-spouse",
+#         "occupation": "Prof-specialty",
+#         "relationship": "Not-in-family",
+#         "race": "White",
+#         "sex": "Male",
+#         "capital-gain": 2020,
+#         "capital-loss": 0,
+#         "hours-per-week": 50,
+#         "native-country": "United-States",
+#     }
+#     make_predictions(request_data)

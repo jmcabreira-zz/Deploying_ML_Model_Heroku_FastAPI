@@ -26,7 +26,7 @@ def test_welcome(client):
 
 
 def test_below_50k_pred(client):
-    input_dict = {
+    data = {
         "age": 39,
         "workclass": "State-gov",
         "fnlgt": 77516,
@@ -42,13 +42,14 @@ def test_below_50k_pred(client):
         "hours-per-week": 40,
         "native-country": "United-States",
     }
-    response = client.post("/predict/", json=input_dict)
-    assert response.status_code == 200, "Status code is not 200"
+    with TestClient(app) as client:
+        response = client.post("/predict/", json=data)
+    assert response.status_code == 200
     assert response.json() == {"prediction": "<=50K"}, "Wrong json output"
 
 
 def test_above_50k_pred(client):
-    data = {
+    data_ = {
         "age": 41,
         "workclass": "Private",
         "fnlgt": 45781,
@@ -64,6 +65,8 @@ def test_above_50k_pred(client):
         "hours-per-week": 50,
         "native-country": "United-States",
     }
-    response = client.post("/predict/", json=data)
-    assert response.status_code == 200, "Status code is not 200"
+    with TestClient(app) as client:
+        response = client.post("/predict/", json=data_)
+        print(response.text)
+    assert response.status_code == 200
     assert response.json() == {"prediction": ">50K"}, "Wrong prediction"

@@ -15,8 +15,10 @@ from starter.CensusClass.Census_Class import CensusData, Prediction
 app = FastAPI()
 
 ROOT = os.getcwd()
+print("ROOT: ", ROOT)
 CONFIG_FILEPATH = os.path.join(ROOT, "config.yaml")
 
+print("CONFIG_FILEPATH: ", CONFIG_FILEPATH)
 with open(CONFIG_FILEPATH, "r", encoding="utf-8") as ymlfile:
     config = Box(yaml.safe_load(ymlfile))
 

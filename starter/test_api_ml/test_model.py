@@ -8,16 +8,15 @@ import pandas as pd
 import sys
 import pytest
 
-ml_path = str(Path(__file__).resolve().parents[1])
+STARTER_OUT_PTH = str(Path(__file__).resolve().parents[1])
+ml_path = os.path.join(STARTER_OUT_PTH, "starter", "ml")
 sys.path.insert(0, ml_path)
 
-import ml
-from ml.data import *
-from ml.model import *
+from data import *
+from model import *
 
-STARTER_ROOT = str(Path(__file__).resolve().parents[2])
-LOG_FOLDER = os.path.join(STARTER_ROOT, "logs")
-CONFIG_FILEPATH = os.path.join(STARTER_ROOT, "config.yaml")
+LOG_FOLDER = os.path.join(STARTER_OUT_PTH, "logs")
+CONFIG_FILEPATH = os.path.join(STARTER_OUT_PTH, "config.yaml")
 LOG_FILE_PTH = os.path.join(LOG_FOLDER, "unit_test.log")
 
 if not os.path.exists(LOG_FOLDER):
@@ -26,8 +25,8 @@ if not os.path.exists(LOG_FOLDER):
 with open(CONFIG_FILEPATH, "r", encoding="UTF-8") as configfile:
     config = Box(yaml.safe_load(configfile))
 
-CLEANED_DATA_FILEPATH = os.path.join(STARTER_ROOT, config.data.cleaned.filepath)
-print(CLEANED_DATA_FILEPATH)
+CLEANED_DATA_FILEPATH = os.path.join(STARTER_OUT_PTH, config.data.cleaned.filepath)
+print("CLEANED_DATA_FILEPATH: ", CLEANED_DATA_FILEPATH)
 
 
 @pytest.fixture

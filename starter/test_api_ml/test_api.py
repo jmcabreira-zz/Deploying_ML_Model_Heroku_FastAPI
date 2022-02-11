@@ -6,7 +6,7 @@ import pytest
 
 APP_ROOT = str(Path(__file__).resolve().parents[1])
 sys.path.insert(0, APP_ROOT)
-
+print(APP_ROOT)
 from main import app
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")

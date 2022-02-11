@@ -22,11 +22,16 @@ CONFIG_FILEPATH = os.path.join(root, "starter", "config.yaml")
 with open(CONFIG_FILEPATH, "r", encoding="utf-8") as ymlfile:
     config = Box(yaml.safe_load(ymlfile))
 
-ENCODER_FILEPATH = os.path.join(ROOT, config.preprocessing.encoder_file_path)
-BINARIZER_FILEPATH = os.path.join(ROOT, config.preprocessing.binarizer_file_path)
-MODEL_FILEPATH = os.path.join(
-    ROOT, config.model.GradientBoostingClassifier.output_file_pth
+ENCODER_FILEPATH = os.path.join(root, "starter", config.preprocessing.encoder_file_path)
+BINARIZER_FILEPATH = os.path.join(
+    root, "starter", config.preprocessing.binarizer_file_path
 )
+MODEL_FILEPATH = os.path.join(
+    root, "starter", config.model.GradientBoostingClassifier.output_file_pth
+)
+print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
+print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
+print("MODEL_FILEPATH:", MODEL_FILEPATH)
 
 app = FastAPI()
 

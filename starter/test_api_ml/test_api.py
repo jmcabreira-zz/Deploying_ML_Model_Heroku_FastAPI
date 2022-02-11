@@ -66,7 +66,7 @@ def test_above_50k_pred(client):
         "native-country": "United-States",
     }
     with TestClient(app) as client:
-        response = client.post("/predic/", json=data_)
+        response = client.post("/predict/", json=data_)
         print(response.text)
     assert response.status_code == 200
     assert response.json() == {"prediction": ">50K"}, "Wrong prediction"

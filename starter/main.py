@@ -7,6 +7,7 @@ from typing import Literal
 import pandas as pd
 import yaml
 from box import Box
+from pathlib import Path
 
 from starter.ml.model import inference
 from starter.ml.data import process_data
@@ -14,11 +15,10 @@ from starter.CensusClass.Census_Class import CensusData, Prediction
 
 app = FastAPI()
 
-ROOT = os.getcwd()
-print("ROOT: ", ROOT)
-CONFIG_FILEPATH = os.path.join(ROOT, "config.yaml")
+root = str(Path(__file__).resolve().parents[1])
 
-print("CONFIG_FILEPATH: ", CONFIG_FILEPATH)
+CONFIG_FILEPATH = os.path.join(root, "starter", "config.yaml")
+
 with open(CONFIG_FILEPATH, "r", encoding="utf-8") as ymlfile:
     config = Box(yaml.safe_load(ymlfile))
 

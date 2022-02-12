@@ -14,6 +14,12 @@ from starter.ml.data import process_data
 from starter.CensusClass.Census_Class import CensusData, Prediction
 
 
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
+
 root = str(Path(__file__).resolve().parents[1])
 
 CONFIG_FILEPATH = os.path.join(root, "starter", "config.yaml")

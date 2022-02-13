@@ -4,7 +4,7 @@ import sys
 import logging
 import pytest
 
-APP_ROOT = str(Path(__file__).resolve().parents[1])
+APP_ROOT = str(Path(__file__).resolve().parents[2])
 sys.path.insert(0, APP_ROOT)
 print(APP_ROOT)
 from main import app

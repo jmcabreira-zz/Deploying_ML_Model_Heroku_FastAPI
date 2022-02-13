@@ -8,6 +8,10 @@ import pandas as pd
 import yaml
 from box import Box
 from pathlib import Path
+import sys
+
+root = str(Path(__file__).resolve().parents[0])
+sys.path.insert(0, os.path.join(root, "starter"))
 
 from starter.ml.model import inference
 from starter.ml.data import process_data
@@ -19,8 +23,6 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
-
-root = str(Path(__file__).resolve().parents[1])
 
 CONFIG_FILEPATH = os.path.join(root, "starter", "config.yaml")
 
@@ -34,9 +36,9 @@ BINARIZER_FILEPATH = os.path.join(
 MODEL_FILEPATH = os.path.join(
     root, "starter", config.model.GradientBoostingClassifier.output_file_pth
 )
-# print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
-# print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
-# print("MODEL_FILEPATH:", MODEL_FILEPATH)
+print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
+print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
+print("MODEL_FILEPATH:", MODEL_FILEPATH)
 
 app = FastAPI()
 

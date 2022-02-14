@@ -9,6 +9,7 @@ import yaml
 from box import Box
 from pathlib import Path
 import sys
+import uvicorn
 
 root = str(Path(__file__).resolve().parents[0])
 sys.path.insert(0, os.path.join(root, "starter"))
@@ -76,6 +77,10 @@ async def make_predictions(request_data: CensusData):
     print("Predicted Income:", prediction)
     return {"prediction": prediction}
 
+
+if __name__ == "__main__":
+
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 # def make_predictions(request_data: CensusData):
 #     request_df = pd.DataFrame({k: v for k, v in request_data.items()}, index=[0])

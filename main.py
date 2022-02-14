@@ -78,9 +78,9 @@ async def make_predictions(request_data: CensusData):
     return {"prediction": prediction}
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 # def make_predictions(request_data: CensusData):
 #     request_df = pd.DataFrame({k: v for k, v in request_data.items()}, index=[0])

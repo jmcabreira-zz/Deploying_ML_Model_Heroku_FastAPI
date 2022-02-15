@@ -1,6 +1,8 @@
 import requests
 import json
 
+# hhtp = 'http://127.0.0.1:8000/predict/'
+url = "https://cabreira-census-data-app.herokuapp.com/predict/"
 data = {
     "age": 41,
     "workclass": "Private",
@@ -17,6 +19,10 @@ data = {
     "hours-per-week": 50,
     "native-country": "United-States",
 }
-r = requests.post("http://127.0.0.1:8000/predict/", data=json.dumps(data))
-print(r)
-print(r.json())
+headers = {"content-type": "application/json"}
+
+# response = requests.get(url)
+# response = requests.post(url, data=json.dumps(data))
+response = requests.post(url, data=json.dumps(data), headers=headers)
+print(response)
+print(response.json())

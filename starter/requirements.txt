@@ -14,5 +14,3 @@ fastapi==0.63.0
 uvicorn
 flake8
 python-box==5.4.1
-pydantic
-uvicorn==0.14.0

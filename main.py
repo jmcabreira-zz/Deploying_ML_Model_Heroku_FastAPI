@@ -18,6 +18,8 @@ from starter.ml.model import inference
 from starter.ml.data import process_data
 from starter.CensusClass.Census_Class import CensusData, Prediction
 
+app = FastAPI()
+
 
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
@@ -41,7 +43,6 @@ print("ENCODER_FILEPATH:", ENCODER_FILEPATH)
 print("BINARIZER_FILEPATH:", BINARIZER_FILEPATH)
 print("MODEL_FILEPATH:", MODEL_FILEPATH)
 
-app = FastAPI()
 
 categorical_features = config.preprocessing.cat_features
 label = config.preprocessing.label

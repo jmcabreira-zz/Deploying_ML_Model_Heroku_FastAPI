@@ -1,0 +1,12 @@
+# Created by pytest automatically.
+.env
+logs/*.log
+starter/ml/__pycache__/
+starter/__pycache__/
+web/__pycache__/
+vscode
+.DS_Store
+.ipynb_checkpoints
+.pytest_cache
+.pyc
+__pycache__
